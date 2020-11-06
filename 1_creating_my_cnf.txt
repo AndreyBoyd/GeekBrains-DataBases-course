@@ -1,0 +1,31 @@
+# Установите СУБД MySQL. Создайте в домашней директории файл .my.cnf, задав в нем логин и пароль, который указывался при установке.
+
+[mysql]
+user=root
+password=123
+
+# После создания файла .my.cnf (т.к. в нём находится пароль пользователя) необходимо дать права на прочтение этого файла только данному пользователю
+# Для этого в терминале производим следующие действия:
+
+# andrey@ubuntu:~$ ls -la
+# итого 92
+# drwxr-xr-x 16 andrey andrey 4096 Nov  6 11:42  .
+# drwxr-xr-x  3 root   root   4096 Nov  4 04:40  ..
+# ...........................
+# -rw-rw-r--  1 andrey andrey   32 Nov  6 11:42  .my.cnf
+# ...........................
+# andrey@ubuntu:~$ cat .my.cnf
+# [mysql]
+# user=root
+# password=123
+
+# andrey@ubuntu:~$ chmod 0600 ~/.my.cnf
+# andrey@ubuntu:~$ ls -la | grep .my.cnf
+# -rw-------  1 andrey andrey   32 Nov  6 11:42 .my.cnf
+
+# Для того чтобы действие файла распростронялось на всех клиентов дистрибьютива mysql делаем, например mysqldump
+# необходимо [mysql] заменить на [client]
+
+[client]
+user=root
+password=123

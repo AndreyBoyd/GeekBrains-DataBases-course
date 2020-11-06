@@ -1,0 +1,42 @@
+В этом файле я даю краткий обзор практического задания по теме “Управление БД”
+
+В данном pull request расположены отдельные файлы к домашнему заданию.
+1 задания файл с расширением txt, 2 задание файл с расширением sql, 3 задание файл с расширением sh.
+
+Здесь в текстовом виде приведены вводимые команды
+
+Практическое задание по теме “Управление БД”
+
+1. Установите СУБД MySQL. Создайте в домашней директории файл .my.cnf, задав в нем логин и пароль, который указывался при установке.
+
+[mysql]
+user=root
+password=123
+
+но лучше использловать
+
+[client]
+user=root
+password=123
+
+Пояснения в файле 1_creating_my_cnf.txt
+
+2. Создайте базу данных example, разместите в ней таблицу users, состоящую из двух столбцов, числового id и строкового name.
+
+CREATE DATABASE IF NOT EXISTS example;
+USE example;
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+  id INT UNSIGNED, 
+  name VARCHAR(15) COMMENT 'Имя пользователя', 
+  PRIMARY KEY (id)
+);
+INSERT INTO users VALUES (1,'Андрей');
+SELECT * FROM users;
+
+3. Создайте дамп базы данных example из предыдущего задания, разверните содержимое дампа в новую базу данных sample.
+
+mysqldump example > dumpexample.SQL
+mysql sample < dumpexample.SQL
+
+Конец файла
